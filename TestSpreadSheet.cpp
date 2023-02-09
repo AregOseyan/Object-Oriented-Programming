@@ -80,7 +80,7 @@ void testSpreadSheetAdd() {
 }
 
 void testSpreadSheetRemove() {
-  std::cout << "The test of removeRow(), removeColumn() methods has started. ";
+  std::cout << "The test of removeRow(), removeColumn() methods has started.\n(case 1) ";
   std::unique_ptr<SpreadSheet> obj(new SpreadSheet(4, 4));
   int oldSizeRow = obj->getSizeRow();
   int oldSizeCol = obj->getSizeCol();
@@ -147,3 +147,20 @@ void testSpreadSheetSwap() {
   }
 }
 
+void testSpreadSheetDisplay() {
+  std::cout << "The test of displayMatrix() method has started.\n";
+  std::unique_ptr<SpreadSheet> obj(new SpreadSheet(3, 4));
+  try {
+    obj->setCellAt(0, 0, "name");
+    obj->setCellAt(0, 1, "4");
+    obj->setCellAt(1, 0, "5");
+    obj->setCellAt(1, 1, "6");
+  }
+  catch (std::exception& e) {
+    std::cout << e.what() << std::endl;
+  }
+  std::cout << "Input matrix[0][0] = name\n      matrix[0][1] = 4\n      matrix[1][0] = 5\n      matrix[1][1] = 6\n";
+  std::cout << "Matrix is\n";
+  obj->displayMatrix();
+  std::cout << std::endl;
+}

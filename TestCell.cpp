@@ -4,7 +4,7 @@
 #include "Date.hpp"
 
 void testCellValues() {
-  std::cout << "The test of setValue(), getValue() methods has started. ";
+  std::cout << "The test of setValue(), getValue() methods has started.\n(case 1) ";
   std::unique_ptr<Cell> obj(new Cell());
   obj->setValue("10");
   if (obj->getValue() == "10") {
@@ -16,7 +16,7 @@ void testCellValues() {
 }
 
 void testCellReset() {
-  std::cout << "The test of reset() method has started. ";
+  std::cout << "The test of reset() method has started.\n(case 1) ";
   std::unique_ptr<Cell> obj(new Cell());
   obj->setValue("10");
   obj->reset();

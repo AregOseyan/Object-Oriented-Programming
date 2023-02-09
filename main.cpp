@@ -28,12 +28,14 @@ void testSpreadSheetValues();
 void testSpreadSheetAdd();
 void testSpreadSheetSwap();
 void testSpreadSheetRemove();
+void testSpreadSheetDisplay();
 void runTestsSpreadSheet() {
   std::cout << "***The SpreadSheet class test has started***\n";
   testSpreadSheetValues();
   testSpreadSheetAdd();
   testSpreadSheetRemove();
   testSpreadSheetSwap();
+  testSpreadSheetDisplay();
   std::cout << "********************************\n\n";
 }
 

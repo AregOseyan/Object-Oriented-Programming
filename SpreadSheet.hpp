@@ -1,5 +1,7 @@
 #ifndef SPREADSHEET_HPP
 #define SPREADSHEET_HPP
+#include <iostream>
+#include <stdexcept>
 #include "Cell.hpp"
 #define ui unsigned int
 
@@ -25,8 +27,13 @@ public:
 
   void swapRows(ui row1, ui row2);
   void swapColumns(ui col1, ui col2);
+  void displayMatrix() const;
 public:
   SpreadSheet& operator=(const SpreadSheet& other);
+
+private:
+  void deleteMatrix();
+  void copySpreadSheet(const SpreadSheet& other1);
 
 private:
   Cell** m_cells;
