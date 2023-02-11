@@ -10,17 +10,21 @@ Spreadsheet::Spreadsheet(ui row, ui col) noexcept
   }
 }
 
-Spreadsheet::Spreadsheet(const Spreadsheet& rhs) noexcept
-  : m_row(rhs.m_row)
-  , m_col(rhs.m_col) 
+Spreadsheet::Spreadsheet(const Spreadsheet& src) noexcept
+  : m_row(src.m_row)
+  , m_col(src.m_col) 
 {
   m_cells = new Cell*[m_row];
   for (int i = 0; i < m_row; ++i) {
     m_cells[i] = new Cell[m_col];
     for (int j = 0; j < m_col; j++) {
-      m_cells[i][j] = rhs.m_cells[i][j];
+      m_cells[i][j] = src.m_cells[i][j];
     }
   }
+}
+
+Spreadsheet::Spreadsheet(Spreadsheet&& src) noexcept {
+  moveFrom(src);
 }
 
 Spreadsheet::~Spreadsheet() {
@@ -70,23 +74,35 @@ ui Spreadsheet::getSizeCol() const {
   return m_col;
 }
 
-void Spreadsheet::deleteMatrix() {
+void Spreadsheet::moveFrom(Spreadsheet& src) noexcept {
+  m_col = src.m_col;
+  m_row = src.m_row;
+  m_cells = src.m_cells;
+
+  src.m_col = 0;
+  src.m_row = 0;
+  src.m_cells = nullptr;
+}
+
+void Spreadsheet::deleteMatrix() noexcept {
   for (int i = 0; i < m_row; ++i) {
     delete[] m_cells[i];
   }
   delete[] m_cells;
+  m_cells = nullptr;
+  m_row = m_col = 0;
 }
 
-void Spreadsheet::copySpreadsheet(const Spreadsheet& other1) {
+void Spreadsheet::copySpreadsheet(const Spreadsheet& other) {
   this->deleteMatrix();
 
-  m_row = other1.m_row;
-  m_col = other1.m_col;
+  m_row = other.m_row;
+  m_col = other.m_col;
   m_cells = new Cell*[m_row];
   for (int i = 0; i < m_row; ++i) {
     m_cells[i] = new Cell[m_col];
     for (int j = 0; j < m_col; ++j) {
-      m_cells[i][j] = other1.m_cells[i][j];
+      m_cells[i][j] = other.m_cells[i][j];
     }
   }
 }
@@ -208,9 +224,17 @@ void Spreadsheet::displayMatrix() const {
   }
 }
 
-Spreadsheet& Spreadsheet::operator=(const Spreadsheet& other) {
-  if (this != &other) {
-    copySpreadsheet(other);
+Spreadsheet& Spreadsheet::operator=(const Spreadsheet& rhs) {
+  if (this != &rhs) {
+    copySpreadsheet(rhs);
+  }
+  return *this;
+}
+
+Spreadsheet& Spreadsheet::operator=(Spreadsheet&& rhs) noexcept {
+  if (this != &rhs) {
+    deleteMatrix();
+    moveFrom(rhs);
   }
   return *this;
 }

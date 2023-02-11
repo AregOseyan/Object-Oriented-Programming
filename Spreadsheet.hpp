@@ -10,7 +10,8 @@ class Spreadsheet
 public:
   Spreadsheet() = default;
   Spreadsheet(ui row, ui col) noexcept;
-  Spreadsheet(const Spreadsheet& rhs) noexcept;
+  Spreadsheet(const Spreadsheet& src) noexcept;
+  Spreadsheet(Spreadsheet&& src) noexcept;
   ~Spreadsheet();
 
 public:
@@ -29,11 +30,13 @@ public:
   void swapColumns(ui col1, ui col2);
   void displayMatrix() const;
 public:
-  Spreadsheet& operator=(const Spreadsheet& other);
+  Spreadsheet& operator=(const Spreadsheet& rhs);
+  Spreadsheet& operator=(Spreadsheet&& rhs) noexcept;
 
 private:
-  void deleteMatrix();
-  void copySpreadsheet(const Spreadsheet& other1);
+  void deleteMatrix() noexcept;
+  void copySpreadsheet(const Spreadsheet& other);
+  void moveFrom(Spreadsheet& src) noexcept;
 
 private:
   Cell** m_cells;
