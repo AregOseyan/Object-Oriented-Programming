@@ -1,5 +1,7 @@
 #ifndef DATE_HPP
 #define DATE_HPP
+#include <iostream>
+#include <stdexcept>
 #define ui unsigned int
 
 constexpr ui monthsDay[] = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };

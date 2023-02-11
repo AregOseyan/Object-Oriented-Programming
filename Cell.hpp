@@ -1,6 +1,9 @@
 #ifndef CELL_HPP
 #define CELL_HPP
 #include <string>
+#include <stdexcept>
+#include <sstream>
+#include <iostream>
 #include "Date.hpp"
 
 enum class Color

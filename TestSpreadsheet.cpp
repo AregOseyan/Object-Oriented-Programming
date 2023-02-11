@@ -1,12 +1,12 @@
 #include <iostream>
 #include <memory>
 #include "Cell.hpp"
-#include "SpreadSheet.hpp"
+#include "Spreadsheet.hpp"
 #include "Date.hpp"
 
-void testSpreadSheetValues() {
+void testSpreadsheetValues() {
   std::cout << "The test of setCellAt(), getCellAt() methods has started.\n(case 1) ";
-  std::unique_ptr<SpreadSheet> obj(new SpreadSheet(4, 4));
+  std::unique_ptr<Spreadsheet> obj(new Spreadsheet(4, 4));
   try {
     obj->setCellAt(0, 0, "name");
   }
@@ -37,9 +37,9 @@ void testSpreadSheetValues() {
   }
 }
 
-void testSpreadSheetAdd() {
+void testSpreadsheetAdd() {
   std::cout << "The test of addRow(), addColumn() methods has started.\n(case 1) ";
-  std::unique_ptr<SpreadSheet> obj(new SpreadSheet(4, 4));
+  std::unique_ptr<Spreadsheet> obj(new Spreadsheet(4, 4));
   int oldSizeRow = obj->getSizeRow();
   int oldSizeCol = obj->getSizeCol();
 
@@ -79,9 +79,9 @@ void testSpreadSheetAdd() {
   }
 }
 
-void testSpreadSheetRemove() {
+void testSpreadsheetRemove() {
   std::cout << "The test of removeRow(), removeColumn() methods has started.\n(case 1) ";
-  std::unique_ptr<SpreadSheet> obj(new SpreadSheet(4, 4));
+  std::unique_ptr<Spreadsheet> obj(new Spreadsheet(4, 4));
   int oldSizeRow = obj->getSizeRow();
   int oldSizeCol = obj->getSizeCol();
 
@@ -102,9 +102,9 @@ void testSpreadSheetRemove() {
   }
 }
 
-void testSpreadSheetSwap() {
+void testSpreadsheetSwap() {
   std::cout << "The test of swapRows(), swapColumns() methods has started.\n(case 1) ";
-  std::unique_ptr<SpreadSheet> obj(new SpreadSheet(2, 2));
+  std::unique_ptr<Spreadsheet> obj(new Spreadsheet(2, 2));
   try {
     obj->setCellAt(0, 0, "3");
     obj->setCellAt(0, 1, "4");
@@ -147,9 +147,9 @@ void testSpreadSheetSwap() {
   }
 }
 
-void testSpreadSheetDisplay() {
+void testSpreadsheetDisplay() {
   std::cout << "The test of displayMatrix() method has started.\n";
-  std::unique_ptr<SpreadSheet> obj(new SpreadSheet(3, 4));
+  std::unique_ptr<Spreadsheet> obj(new Spreadsheet(3, 4));
   try {
     obj->setCellAt(0, 0, "name");
     obj->setCellAt(0, 1, "4");

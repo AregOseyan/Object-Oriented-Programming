@@ -1,6 +1,6 @@
-#include "SpreadSheet.hpp"
+#include "Spreadsheet.hpp"
 
-SpreadSheet::SpreadSheet(ui row, ui col) noexcept
+Spreadsheet::Spreadsheet(ui row, ui col) noexcept
   : m_row(row)
   , m_col(col)
 {
@@ -10,7 +10,7 @@ SpreadSheet::SpreadSheet(ui row, ui col) noexcept
   }
 }
 
-SpreadSheet::SpreadSheet(const SpreadSheet& rhs) noexcept
+Spreadsheet::Spreadsheet(const Spreadsheet& rhs) noexcept
   : m_row(rhs.m_row)
   , m_col(rhs.m_col) 
 {
@@ -23,14 +23,14 @@ SpreadSheet::SpreadSheet(const SpreadSheet& rhs) noexcept
   }
 }
 
-SpreadSheet::~SpreadSheet() {
+Spreadsheet::~Spreadsheet() {
   for (int i = 0; i < m_row; ++i) {
     delete[] m_cells[i];
   }
   delete[] m_cells;
 }
 
-void SpreadSheet::setCellAt(ui row, ui col, const Cell& cells)  {
+void Spreadsheet::setCellAt(ui row, ui col, const Cell& cells)  {
   if (row >= this->m_row) {
     throw std::invalid_argument("Error! : Invalid argumet rows");
   }
@@ -40,7 +40,7 @@ void SpreadSheet::setCellAt(ui row, ui col, const Cell& cells)  {
   m_cells[row][col] = cells;
 }
 
-void SpreadSheet::setCellAt(ui row, ui col, const std::string& str) {
+void Spreadsheet::setCellAt(ui row, ui col, const std::string& str) {
   if (row >= this->m_row) {
     throw std::invalid_argument("Error! : Invalid argumet rows");
   }
@@ -50,7 +50,7 @@ void SpreadSheet::setCellAt(ui row, ui col, const std::string& str) {
   m_cells[row][col].setValue(str);
 }
 
-Cell SpreadSheet::getCellAt(ui row, ui col) const
+Cell Spreadsheet::getCellAt(ui row, ui col) const
 { 
   if (row >= this->m_row) {
     throw std::invalid_argument("Error! : Invalid argumet rows");
@@ -62,22 +62,22 @@ Cell SpreadSheet::getCellAt(ui row, ui col) const
   return res;
 }
 
-ui SpreadSheet::getSizeRow() const {
+ui Spreadsheet::getSizeRow() const {
   return m_row;
 }
 
-ui SpreadSheet::getSizeCol() const {
+ui Spreadsheet::getSizeCol() const {
   return m_col;
 }
 
-void SpreadSheet::deleteMatrix() {
+void Spreadsheet::deleteMatrix() {
   for (int i = 0; i < m_row; ++i) {
     delete[] m_cells[i];
   }
   delete[] m_cells;
 }
 
-void SpreadSheet::copySpreadSheet(const SpreadSheet& other1) {
+void Spreadsheet::copySpreadsheet(const Spreadsheet& other1) {
   this->deleteMatrix();
 
   m_row = other1.m_row;
@@ -91,92 +91,92 @@ void SpreadSheet::copySpreadSheet(const SpreadSheet& other1) {
   }
 }
 
-void SpreadSheet::addRow(ui rowNum) {
+void Spreadsheet::addRow(ui rowNum) {
   if (rowNum >= this->m_row) {
     throw std::invalid_argument("Error! : Invalid argumet rows");
   }
-  SpreadSheet newSpreadSheet(m_row + 1, m_col);
+  Spreadsheet newSpreadsheet(m_row + 1, m_col);
   for (int i = 0; i < m_row; ++i) {
     for (int j = 0; j < m_col; ++j) {
       if (i < rowNum) {
-        newSpreadSheet.m_cells[i][j] = m_cells[i][j];
+        newSpreadsheet.m_cells[i][j] = m_cells[i][j];
       } 
       else {
-        newSpreadSheet.m_cells[i + 1][j] = m_cells[i][j];
+        newSpreadsheet.m_cells[i + 1][j] = m_cells[i][j];
       }
     }
   }
 
   for (int j = 0; j < m_col; ++j) {
-    newSpreadSheet.m_cells[rowNum][j].setValue("Success");
+    newSpreadsheet.m_cells[rowNum][j].setValue("Success");
   }
  
-  copySpreadSheet(newSpreadSheet);
+  copySpreadsheet(newSpreadsheet);
 }
 
-void SpreadSheet::removeRow(ui rowNum) {
+void Spreadsheet::removeRow(ui rowNum) {
   if (rowNum >= this->m_row) {
     throw std::invalid_argument("Error! : Invalid argumet rows");
   }
   int c = 0;
-  SpreadSheet newSpreadSheet(m_row - 1, m_col);
+  Spreadsheet newSpreadsheet(m_row - 1, m_col);
   for (int i = 0; i < m_row; ++i) {
     if (i == rowNum) {
       continue;
     }
     for (int j = 0; j < m_col; ++j) {
-      newSpreadSheet.m_cells[c][j] = m_cells[i][j];
+      newSpreadsheet.m_cells[c][j] = m_cells[i][j];
     }
     c++;
   }
   
-  copySpreadSheet(newSpreadSheet);
+  copySpreadsheet(newSpreadsheet);
 }
 
-void SpreadSheet::addColumn(ui colNum) {
+void Spreadsheet::addColumn(ui colNum) {
   if (colNum >= this->m_col) {
     throw std::invalid_argument("Error! : Invalid argumet columns");
   }
-  SpreadSheet newSpreadSheet(m_row, m_col + 1);
+  Spreadsheet newSpreadsheet(m_row, m_col + 1);
   for (int i = 0; i < m_row; ++i) {
     for (int j = 0; j < m_col; ++j) {
       if (j < colNum) {
-        newSpreadSheet.m_cells[i][j] = m_cells[i][j];
+        newSpreadsheet.m_cells[i][j] = m_cells[i][j];
       }
       else {
-        newSpreadSheet.m_cells[i][j + 1] = m_cells[i][j];
+        newSpreadsheet.m_cells[i][j + 1] = m_cells[i][j];
       }
     }
   }
 
   for (int i = 0; i < m_row; ++i) {
-    newSpreadSheet.m_cells[i][colNum].setValue("Success");
+    newSpreadsheet.m_cells[i][colNum].setValue("Success");
   }
 
-  copySpreadSheet(newSpreadSheet);
+  copySpreadsheet(newSpreadsheet);
 }
 
-void SpreadSheet::removeColumn(ui colNum) {
+void Spreadsheet::removeColumn(ui colNum) {
   if (colNum >= this->m_col) {
     throw std::invalid_argument("Error! : Invalid argumet columns");
   }
   int c = 0;
-  SpreadSheet newSpreadSheet(m_row, m_col - 1);
+  Spreadsheet newSpreadsheet(m_row, m_col - 1);
   for (int i = 0; i < m_row; ++i) {
     for (int j = 0; j < m_col; ++j) {
       if (j == colNum) {
         continue;
       }
-      newSpreadSheet.m_cells[i][c] = m_cells[i][j];
+      newSpreadsheet.m_cells[i][c] = m_cells[i][j];
       c++;
     }
     c = 0;
   }
 
-  copySpreadSheet(newSpreadSheet);
+  copySpreadsheet(newSpreadsheet);
 }
 
-void SpreadSheet::swapRows(ui row1, ui row2) {
+void Spreadsheet::swapRows(ui row1, ui row2) {
   if ((row1 >= this->m_row) || (row2 >= this->m_row) || (row1 == row2)) {
     throw std::invalid_argument("Error! : Invalid argumet rows");
   }
@@ -185,7 +185,7 @@ void SpreadSheet::swapRows(ui row1, ui row2) {
   }
 }
 
-void SpreadSheet::swapColumns(ui col1, ui col2) {
+void Spreadsheet::swapColumns(ui col1, ui col2) {
   if ((col1 >= this->m_col) || (col2 >= this->m_col) || (col1 == col2)) {
     throw std::invalid_argument("Error! : Invalid argumet columns");
   }
@@ -194,7 +194,7 @@ void SpreadSheet::swapColumns(ui col1, ui col2) {
   }
 }
 
-void SpreadSheet::displayMatrix() const {
+void Spreadsheet::displayMatrix() const {
   for (int i = 0; i < m_row; ++i) {
     for (int j = 0; j < m_col; ++j) {
       if (m_cells[i][j].getValue() == "") {
@@ -208,9 +208,9 @@ void SpreadSheet::displayMatrix() const {
   }
 }
 
-SpreadSheet& SpreadSheet::operator=(const SpreadSheet& other) {
+Spreadsheet& Spreadsheet::operator=(const Spreadsheet& other) {
   if (this != &other) {
-    copySpreadSheet(other);
+    copySpreadsheet(other);
   }
   return *this;
 }

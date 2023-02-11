@@ -1,5 +1,3 @@
-#include <iostream>
-#include <stdexcept>
 #include "Date.hpp"
 
 Date::Date(ui month, ui day, ui year) {

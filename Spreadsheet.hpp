@@ -5,13 +5,13 @@
 #include "Cell.hpp"
 #define ui unsigned int
 
-class SpreadSheet 
+class Spreadsheet 
 {
 public:
-  SpreadSheet() = default;
-  SpreadSheet(ui row, ui col) noexcept;
-  SpreadSheet(const SpreadSheet& rhs) noexcept;
-  ~SpreadSheet();
+  Spreadsheet() = default;
+  Spreadsheet(ui row, ui col) noexcept;
+  Spreadsheet(const Spreadsheet& rhs) noexcept;
+  ~Spreadsheet();
 
 public:
   void setCellAt(ui row, ui col, const Cell& cells);
@@ -29,11 +29,11 @@ public:
   void swapColumns(ui col1, ui col2);
   void displayMatrix() const;
 public:
-  SpreadSheet& operator=(const SpreadSheet& other);
+  Spreadsheet& operator=(const Spreadsheet& other);
 
 private:
   void deleteMatrix();
-  void copySpreadSheet(const SpreadSheet& other1);
+  void copySpreadsheet(const Spreadsheet& other1);
 
 private:
   Cell** m_cells;

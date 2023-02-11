@@ -24,18 +24,18 @@ void runTestsCell() {
   std::cout << "********************************\n\n";
 }
 
-void testSpreadSheetValues();
-void testSpreadSheetAdd();
-void testSpreadSheetSwap();
-void testSpreadSheetRemove();
-void testSpreadSheetDisplay();
-void runTestsSpreadSheet() {
-  std::cout << "***The SpreadSheet class test has started***\n";
-  testSpreadSheetValues();
-  testSpreadSheetAdd();
-  testSpreadSheetRemove();
-  testSpreadSheetSwap();
-  testSpreadSheetDisplay();
+void testSpreadsheetValues();
+void testSpreadsheetAdd();
+void testSpreadsheetSwap();
+void testSpreadsheetRemove();
+void testSpreadsheetDisplay();
+void runTestsSpreadsheet() {
+  std::cout << "***The Spreadsheet class test has started***\n";
+  testSpreadsheetValues();
+  testSpreadsheetAdd();
+  testSpreadsheetRemove();
+  testSpreadsheetSwap();
+  testSpreadsheetDisplay();
   std::cout << "********************************\n\n";
 }
 
@@ -43,7 +43,7 @@ int main()
 {
   runTestsDate();
   runTestsCell();
-  runTestsSpreadSheet();
+  runTestsSpreadsheet();
 
   return {};
 }

@@ -1,7 +1,4 @@
 #include "Cell.hpp"
-#include <stdexcept>
-#include <sstream>
-#include <iostream>
 
 Cell::Cell(const std::string& str, Color hue) noexcept
   : m_value(str)
