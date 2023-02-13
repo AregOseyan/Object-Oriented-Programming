@@ -2,13 +2,13 @@
 
 Date::Date(ui month, ui day, ui year) {
   if ((month == 0) || (month > 12)) {
-    throw std::invalid_argument("Error! : Invalid argument month");
+    throw std::invalid_argument("Error! : Invalid argument month.");
   }
-  if ((day == 0) || (day > monthsDay[day])) {
-    throw std::invalid_argument("Error! : Invalid argument day");
+  if ((day == 0) || (day > monthsDay[month])) {
+    throw std::invalid_argument("Error! : Invalid argument day.");
   }
   if (year < 2023) {
-    throw std::invalid_argument("Error! : Invalid argument year");
+    throw std::invalid_argument("Error! : Invalid argument year.");
   }
   m_month = month;
   m_day = day;
@@ -27,23 +27,29 @@ ui Date::getYear() const {
   return m_year;
 }
 
+void Date::resetValue() {
+  m_month = {};
+  m_day = {};
+  m_year = {};
+}
+
 void Date::setMonth(ui month) {
   if ((month == 0) || (month > 12)) {
-    throw std::invalid_argument("Error! : Invalid argument month");
+    throw std::invalid_argument("Error! : Invalid argument month.");
   }
   m_month = month;
 }
 
 void Date::setDay(ui day) {
-  if ((day == 0) || (day > monthsDay[day])) {
-    throw std::invalid_argument("Error! : Invalid argument day");
+  if ((day == 0) || (day > monthsDay[m_month])) {
+    throw std::invalid_argument("Error! : Invalid argument day.");
   }
   m_day = day;
 }
 
 void Date::setYear(ui year) {
     if (year < 2023) {
-    throw std::invalid_argument("Error! : Invalid argument year");
+    throw std::invalid_argument("Error! : Invalid argument year.");
   }
   m_year = year;
 }

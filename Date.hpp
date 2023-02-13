@@ -18,7 +18,7 @@ public:
   void setMonth(ui month);
   void setDay(ui day);
   void setYear(ui year);
-
+  void resetValue();
   void display1() const;
   void display2() const;
 

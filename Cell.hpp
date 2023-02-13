@@ -1,10 +1,6 @@
 #ifndef CELL_HPP
 #define CELL_HPP
 #include <string>
-#include <stdexcept>
-#include <sstream>
-#include <iostream>
-#include "Date.hpp"
 
 enum class Color
 {
@@ -19,22 +15,21 @@ enum class Color
 class Cell 
 {
 public:
-  Cell() = default;
-  Cell(const std::string& str, Color hue) noexcept;
-  
-public:
-  void setValue(const std::string& str);
-  void setColor(Color hue);
-  std::string getValue() const;
-  Color getColor() const;
-  int toInt();
-  double toDouble();
-  Date toDate();
-  void reset();
-  void swap(Cell& other);
+  virtual ~Cell() = default;
 
-private:
-  std::string m_value;
+public:
+  virtual void setValue(const std::string& str) = 0;
+  virtual std::string getStringValue() const = 0;
+  virtual void reset() = 0;
+
+  void setColor(Color hue) {
+    m_color = hue;
+  }
+  Color getColor() const {
+    return m_color;
+  }
+
+protected:
   Color m_color { Color::White };
 };
 #endif // CELL_HPP

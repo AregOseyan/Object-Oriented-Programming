@@ -3,7 +3,7 @@
 #include "Date.hpp"
 
 void testDateGetValues() {
-  std::cout << "The test of getMonth(), getDay(), getYear() methods has started.\n(case 1) ";
+  std::cout << "The test of getMonth(), getDay(), getYear() methods has started.\n(case 1) : ";
   std::unique_ptr<Date> obj(new Date(2, 8, 2023));
   if ((obj->getMonth() == 2) && (obj->getDay() == 8) && (obj->getYear() == 2023)) {
     std::cout << "[ Test passed ]\n";
@@ -14,7 +14,7 @@ void testDateGetValues() {
 }
 
 void testDateSetValues() {
-  std::cout << "The test of setMonth(), setDay(), setYear() methods has started.\n(case 1) ";
+  std::cout << "The test of setMonth(), setDay(), setYear() methods has started.\n(case 1) : ";
   std::unique_ptr<Date> obj(new Date());
   try {
     obj->setMonth(2);
