@@ -11,7 +11,7 @@ public:
     for (int i = 0; i < m_count; ++i) {
       delete m_instance[i];
       m_instance[i] = nullptr;
-      }
+    }
   }
   static MultitonClass* createObject () {
     if (m_count > m_id) { 
@@ -19,12 +19,12 @@ public:
       m_instance[m_id] = new MultitonClass; 
       ++m_id;
       return m_instance[m_id - 1];
-      }
-      else {
-        ++m_id;
-	std::cout << "Old object " << ((m_id - 1) % m_count) << std::endl;
-	return m_instance[(m_id - 1) % m_count];
-	}
+    }
+    else {
+      ++m_id;
+      std::cout << "Old object " << ((m_id - 1) % m_count) << std::endl;
+      return m_instance[(m_id - 1) % m_count];
+    }
   }
 
 protected:
