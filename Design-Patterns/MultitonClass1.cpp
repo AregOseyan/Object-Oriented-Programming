@@ -32,7 +32,7 @@ protected:
 
 private:
   static inline std::size_t m_id {};
-  const static inline int m_count {4};
+  const static int m_count {4};
   static inline MultitonClass* m_instance[m_count];
 };
 
